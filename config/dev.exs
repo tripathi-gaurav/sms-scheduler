@@ -2,8 +2,8 @@ use Mix.Config
 
 # Configure your database
 config :sms_scheduler, SmsScheduler.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "sms_scheduler",
+  password: "ieHaw0aeshah",
   database: "sms_scheduler_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
