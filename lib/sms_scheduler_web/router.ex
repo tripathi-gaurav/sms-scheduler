@@ -17,6 +17,15 @@ defmodule SmsSchedulerWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/users/new", UserController, :new
+    get "/users/:id", UserController, :show
+    post "/users", UserController, :create
+
+    resources "/sessions", SessionController, only: [:create]
+
+    get "/login", SessionController, :new
+    get "/logout", SessionController, :delete
+  
   end
 
   # Other scopes may use custom stacks.

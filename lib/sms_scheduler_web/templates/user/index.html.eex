@@ -1,0 +1,8 @@
+<%= for user <- @users do %>
+ <h2>User: <%= user.name %></h2>
+
+ <%= for message <- user.messages do %>
+   <strong>To: <%= message.from %></strong><br />
+   </strong>Message: <%= message.body %></strong><br />
+ <% end %>
+<% end %>

@@ -1,0 +1,30 @@
+<div>
+  <%= form_for @user, user_path(@conn, :create), fn f -> %>
+   <label>
+     Name:<br />
+     <%= text_input f, :name %>
+   </label>
+   <br />
+   <label>
+     Email:<br />
+     <%= text_input f, :email %>
+   </label>
+   <br />
+   <label>
+     Password:<br />
+     <%= password_input f, :password %>
+   </label>
+   <br />
+   <label>
+     Password Confirmation:<br />
+     <%= password_input f, :password_confirmation %>
+   </label>
+   <br />
+   <label>
+     Phone:<br />
+     <%= text_input f, :phone %>
+   </label>
+   <br />
+   <%= submit "Sign Up" %>
+  <% end %>
+</div>
