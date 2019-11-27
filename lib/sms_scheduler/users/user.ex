@@ -21,7 +21,7 @@ defmodule SmsScheduler.Users.User do
 
     def changeset(%User{}=user, attrs) do
         user
-        |> cast(attrs, [:name, :email, :phone, :password, :password_confirmation :token])
+        |> cast(attrs, [:name, :email, :phone, :password, :password_confirmation, :token])
         |> validate_confirmation(:password, message: "does not match password!")
         |> encrypt_password()
         |> validate_required([:name, :email, :phone, :password_hash])
@@ -29,7 +29,7 @@ defmodule SmsScheduler.Users.User do
 
     def encrypt_password(changeset) do
         with password when not is_nil(password) <- get_change(changeset, :password) do
-                put_change(changeset, :encrypted_password, Comeonin.Bcrypt.hashpwsalt(password))
+                put_change(changeset, :password_hash, Comeonin.Bcrypt.hashpwsalt(password))
         else
                 _ -> changeset
         end     
