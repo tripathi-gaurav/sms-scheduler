@@ -25,6 +25,12 @@ defmodule SmsSchedulerWeb.Router do
 
     get "/login", SessionController, :new
     get "/logout", SessionController, :delete
+
+    # Oauth2 Authentication
+    # obtained from class notes
+    get "/auth", AuthController, :authenticate
+    delete "/auth", AuthController, :delete
+    get "/auth/callback", AuthController, :callback
   
   end
 
@@ -32,4 +38,6 @@ defmodule SmsSchedulerWeb.Router do
   # scope "/api", SmsSchedulerWeb do
   #   pipe_through :api
   # end
+
+  
 end

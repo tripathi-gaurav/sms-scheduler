@@ -1,5 +1,12 @@
 <div class="row">
   <div class="col-12">
     <h1>Welcome to SMS Scheulder</h1>
+
+    <p class="auth-link">
+      <%= link to: Routes.auth_path(@conn, :authenticate) do %>
+        <i class="icon ion-logo-github"></i> Github
+      <% end %>
+    </p>
+    
   </div>
 </div>
