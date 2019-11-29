@@ -12,28 +12,27 @@ defmodule SmsScheduler.Users do
         Repo.all(User) |> Repo.preload(:messages)
     end
 
-
-    def create_users(user_attrs) do
-        Repo.transaction(fn ->
-          with {:ok, user} <- create_user(user_attrs)
-          do
-            user
-          else
-            _ -> Repo.rollback("Failed to create user")
-          end
-        end)
-    end
-
     def create_user(attrs) do
         %User{}
         |> User.changeset(attrs)
         |> Repo.insert()
     end
 
-    def get_user(id), do: Repo.get(User, id)
+    def get_user(id) do
+      if(id == -1) do
+        nil
+      else
+        Repo.one! from u in User,
+          where: u.id == ^id,
+          preload: [:messages]
+      end
+    end
 
     def get_user_by_email(email) do
-        Repo.get_by(User, email: email)
+      Repo.one! from u in User,
+          where: u.email == ^email,
+          preload: [:messages]
+      #Repo.get_by(User, email: email)
     end
 
 end

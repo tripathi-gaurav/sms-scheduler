@@ -1,0 +1,11 @@
+<h2>Message Sent Successfully!</h2>
+
+<br />
+<h2>Message Details</h2><br />
+
+<h4>Name: <%= @message.user.name %> </h4> <br />
+<h4>Email: <%= @message.user.email %> </h4> <br />
+<h4>Phone: <%= @message.user.phone %> </h4> <br />
+
+<p>Sent To: <%= @message.to %></p><br />
+<p>Message Content: <%= @message.body %></p><br />

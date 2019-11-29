@@ -1,12 +1,6 @@
-<div class="row">
-  <div class="col-12">
-    <h1>Welcome to SMS Scheulder</h1>
-
-    <p class="auth-link">
-      <%= link to: Routes.auth_path(@conn, :authenticate) do %>
-        <i class="icon ion-logo-github"></i> Github
-      <% end %>
-    </p>
-    
-  </div>
+<div class="jumbotron">
+  <h2><%= gettext "Welcome to %{name}!", name: "SMS Scheduler" %></h2>
+  <p class="lead">A client messaging app!</p>
+  <p>To create a new account, <%= link "click here", to: Routes.user_path(@conn, :new) %></p>
+  <p>To view all messages, <%= link "click here", to: "#" %></p>
 </div>

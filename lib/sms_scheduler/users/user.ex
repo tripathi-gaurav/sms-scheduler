@@ -22,6 +22,8 @@ defmodule SmsScheduler.Users.User do
     def changeset(%User{}=user, attrs) do
         user
         |> cast(attrs, [:name, :email, :phone, :password, :password_confirmation, :token])
+        |> validate_format(:email, ~r/.+@.+\..+/, [message: "Please input a valid email"])
+        |> unique_constraint(:email)
         |> validate_confirmation(:password, message: "does not match password!")
         |> encrypt_password()
         |> validate_required([:name, :email])

@@ -21,9 +21,10 @@ defmodule SmsSchedulerWeb.UserController do
           end
     end
 
-    def index(conn, _params) do
-      users = Users.list_users()
-      render conn, "index.html", users: users
+    def index(conn, params) do
+      login_user = get_session(conn, :user)
+      user = Users.get_user(login_user.id)
+      render conn, "index.html", user: user
     end
 
     def show(conn, params) do

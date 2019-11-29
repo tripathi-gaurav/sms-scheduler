@@ -1,5 +1,15 @@
-<h2><%= @user.name %>'s Profile</h2>
+<h2>User Profile</h2>
 
 <br />
-<h4> @user.email </h4> <br />
-<h4> @user.phone </h4> <br />
+<h4>Name: <%= @user.name %> </h4> <br />
+<h4>Email: <%= @user.email %> </h4> <br />
+<h4>Phone: <%= @user.phone %> </h4> <br />
+
+<h2><%= @user.name %>'s Message History</h2>
+
+  <%= for message <- @user.messages do %>
+<div class="row">
+    <p>To: <%= message.to %></p><br />
+    <p>Message: <%= message.body %></p><br />
+</div>
+  <% end %>
