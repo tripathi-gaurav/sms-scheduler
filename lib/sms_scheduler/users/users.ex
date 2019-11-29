@@ -12,6 +12,7 @@ defmodule SmsScheduler.Users do
         Repo.all(User) |> Repo.preload(:messages)
     end
 
+
     def create_users(user_attrs) do
         Repo.transaction(fn ->
           with {:ok, user} <- create_user(user_attrs)

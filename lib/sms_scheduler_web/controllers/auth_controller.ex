@@ -4,7 +4,7 @@ defmodule SmsSchedulerWeb.AuthController do
   alias SmsScheduler.Auth
 
   def authenticate(conn, _params) do
-    redirect conn, external: Auth.authorize_url!(scope: "user, repo")
+    redirect conn, external: Auth.authorize_url!(scope: "user:email, repo")
   end
 
   def delete(conn, _params) do
@@ -15,20 +15,40 @@ defmodule SmsSchedulerWeb.AuthController do
   end
 
   def callback(conn, %{"code" => code}) do
+    #TODO: remove the ridiculous IO side effects
     client = Auth.get_token!(code: code)
     %{body: user} = OAuth2.Client.get!(client, "/user")
+    user_email = hd( Jason.decode!( OAuth2.Client.get!(client, "/user/emails").body ) )["email"]
+    IO.puts "EMAIL: #{user_email}"
 
     token = client.token
     |> Map.drop([:__struct__, :__meta__])
+    IO.puts "======"
+    IO.puts "TOKEN"
+    IO.inspect token
+    IO.puts "CLIENT"
+    IO.inspect client
+    IO.puts "USER"
+    IO.inspect user
+    IO.puts "DECODE"
+    IO.inspect Jason.decode!(user)
+    IO.puts "======"
 
-    {:ok, user} = Jason.decode!(user)
-    |> Map.put("token", token)
-    |> SmsScheduler.Users.create_user()
+    Jason.decode!(user)
+    {:ok, user} = Jason.decode(user)
+    user = user
+    |> Map.put("token", token.access_token)
+    |> Map.put("email", user_email)
 
     IO.inspect(user)
+    insert_user = SmsScheduler.Users.create_user(user)
+
+    IO.inspect( insert_user )
+    
 
     conn
-    |> put_session(:user_id, user.id)
-    |> redirect(to: "/welcome")
+    |> put_session(:user_id, user["id"])
+    |> redirect(to: "/")
+    #|> redirect(to: "/welcome")
   end
 end

@@ -2,5 +2,8 @@
 
 // @import "./phoenix.css";
 
-$body-bg: #BBB;
+$body-bg: #bbb;
 @import "~bootstrap/scss/bootstrap";
+
+$ionicons-font-path: "~ionicons/dist/fonts";
+@import "~ionicons/dist/scss/ionicons";
