@@ -5,6 +5,7 @@ defmodule SmsSchedulerWeb.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
+    plug SmsSchedulerWeb.Plugs.VerifyUserSession
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
@@ -20,6 +21,11 @@ defmodule SmsSchedulerWeb.Router do
     get "/users/new", UserController, :new
     get "/users/:id", UserController, :show
     post "/users", UserController, :create
+    get "/users", UserController, :index
+
+    get "/messages/new", MessageController, :new
+    get "/messages/:id", MessageController, :show
+    post "/messages", MessageController, :create
 
     resources "/sessions", SessionController, only: [:create]
 

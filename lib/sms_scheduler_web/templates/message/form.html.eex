@@ -1,0 +1,17 @@
+<div>
+  <%= form_for @message, Routes.message_path(@conn, :create), fn f -> %>
+   <label>
+     To:<br />
+     <%= text_input f, :to %>
+     <%= error_tag f, :to %>
+   </label>
+   <br />
+   <label>
+     Message:<br />
+     <%= text_input f, :body %>
+     <%= error_tag f, :body %>
+   </label>
+   <br />
+   <%= submit "Send Message" %>
+  <% end %>
+</div>

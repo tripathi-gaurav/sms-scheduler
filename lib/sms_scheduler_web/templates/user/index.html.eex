@@ -1,8 +1,6 @@
-<%= for user <- @users do %>
- <h2>User: <%= user.name %></h2>
+<h2><%= @user.name %>'s Dashboard!</h2>
 
- <%= for message <- user.messages do %>
-   <strong>To: <%= message.from %></strong><br />
-   </strong>Message: <%= message.body %></strong><br />
- <% end %>
-<% end %>
+<br />
+
+<p>To send a new message, <%= link "click here", to: Routes.message_path(@conn, :new) %></p>
+<p>To view your message history, <%= link "click here", to: Routes.user_path(@conn, :show, @user) %></p>

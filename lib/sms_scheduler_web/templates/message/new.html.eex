@@ -1,0 +1,3 @@
+<h2>Create Message</h2>
+<hr />
+<%= render("form.html", %{ message: @message, conn: @conn }) %>

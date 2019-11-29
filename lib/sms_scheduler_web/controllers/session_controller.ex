@@ -10,7 +10,7 @@ defmodule SmsSchedulerWeb.SessionController do
         conn
         |> delete_session(:user)
         |> put_flash(:info, "Logged out successfully!")
-        |> redirect(to: "/")
+        |> redirect(to: Routes.page_path(conn, :index))
       end
     
       def create(conn, %{"email" => email, "password" => password}) do
@@ -20,7 +20,7 @@ defmodule SmsSchedulerWeb.SessionController do
           conn
           |> put_flash(:info, "Logged in successfully!")
           |> put_session(:user, %{ id: login_user.id, name: login_user.name, email: login_user.email })
-          |> redirect(to: "/")
+          |> redirect(to: Routes.user_path(conn, :index))
         else
           {:error, _} ->
             conn

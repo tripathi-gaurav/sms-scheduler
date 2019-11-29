@@ -3,26 +3,31 @@
    <label>
      Name:<br />
      <%= text_input f, :name %>
+     <%= error_tag f, :name %>
    </label>
    <br />
    <label>
      Email:<br />
      <%= text_input f, :email %>
+     <%= error_tag f, :email %>
    </label>
    <br />
    <label>
      Password:<br />
      <%= password_input f, :password %>
+     <%= error_tag f, :password %>
    </label>
    <br />
    <label>
      Password Confirmation:<br />
      <%= password_input f, :password_confirmation %>
+     <%= error_tag f, :password_confirmation %>
    </label>
    <br />
    <label>
      Phone:<br />
      <%= text_input f, :phone %>
+     <%= error_tag f, :phone %>
    </label>
    <br />
    <%= submit "Sign Up" %>
