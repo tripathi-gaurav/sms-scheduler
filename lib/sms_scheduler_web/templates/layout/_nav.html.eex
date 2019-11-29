@@ -1,16 +1,33 @@
-<nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <div class="navbar-header">
+
+        
+          
+          <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+          <div class="col-4">
             <a class="navbar-brand" href="/">SMS Scheduler</a>
           </div>
+          <div class="col-4 text-light">
+            
+          </div>
           <%= if @current_user do %>
-          <ul class="nav navbar-nav navbar-right">  
-            <li><a href="/logout">Logout</a></li> 
+          <div class="col-4 text-light">
+          <ul class="navbar-nav mr-auto">
+            User: <%= @current_user.name %>
+            <li><a href="/logout">(Logout)</a></li> 
           </ul>
+          </div>
           <%= else %>
-            <ul class="nav navbar-nav navbar-right">
-                 <li><a href="/login">Login</a></li> 
-                 
+            <div class="col-4">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a href="/login">Login</a>
+              </li>
+              <li class="nav-item" >
+                <%= link to: Routes.auth_path(@conn, :authenticate) do %>
+                <i class="icon ion-logo-github"></i> Github
+              <% end %>
+              </li>
+            </ul>
+            </div>
           <%= end %>
-        </div>
+        
       </nav>
