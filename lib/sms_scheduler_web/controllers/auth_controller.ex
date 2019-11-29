@@ -1,6 +1,6 @@
 defmodule SmsSchedulerWeb.AuthController do
   use SmsSchedulerWeb, :controller
-
+  alias SmsScheduler.Users
   alias SmsScheduler.Auth
 
   def authenticate(conn, _params) do
@@ -45,10 +45,11 @@ defmodule SmsSchedulerWeb.AuthController do
 
     IO.inspect( insert_user )
     
-
+    login_user = Users.get_user_by_email(user_email)
     conn
-    |> put_session(:user_id, user["id"])
-    |> redirect(to: "/")
+    |> put_flash(:info, "Logged in successfully!")
+    |> put_session(:user, %{ id: login_user.id, name: login_user.name, email: login_user.email })
+    |> redirect(to: Routes.user_path(conn, :index))
     #|> redirect(to: "/welcome")
   end
 end
