@@ -9,7 +9,7 @@
           <div class="col-4 text-light">
           <ul class="navbar-nav mr-auto">
             User: <%= @current_user.name %>
-            <li><a href="/logout">(Logout)</a></li> 
+            <li><a href="/logout"> (Logout)</a></li> 
           </ul>
           </div>
           <%= else %>
