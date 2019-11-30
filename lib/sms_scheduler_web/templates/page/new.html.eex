@@ -1,0 +1,36 @@
+<div class="tagline">
+  <h1>Welcome to SMS Scheduler</h1>
+  <h2>A Client Messaging App</h2>
+</div>
+
+<div class="action-boxes">
+
+  <div class="card login">
+      <%= form_tag Routes.session_path(@conn, :create) do %>
+    <label>
+      Email:<br />
+      <input type="text" name="email">
+    </label>
+    <br />
+    <label>
+      Password:<br />
+      <input type="password" name="password">
+    </label>
+    <br />
+    <%= submit "Login" %>
+  <% end %>
+  </div>
+
+  <div class="card signup">
+    <h5>
+      <strong>
+        New to Messengyr?
+      </strong>
+
+      Sign up!
+    </h5>
+    <%= render("form.html", %{ user: @user, conn: @conn }) %>
+    
+
+  </div>
+  </div>

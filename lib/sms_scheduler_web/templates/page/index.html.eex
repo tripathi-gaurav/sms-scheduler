@@ -1,6 +1,16 @@
-<div class="jumbotron">
-  <h2><%= gettext "Welcome to %{name}!", name: "SMS Scheduler" %></h2>
-  <p class="lead">A client messaging app!</p>
-  <p>To create a new account, <%= link "click here", to: Routes.user_path(@conn, :new) %></p>
-  <p>To view all messages, <%= link "click here", to: "#" %></p>
+<div class="tagline">
+  <h1>Welcome to SMS Scheduler</h1>
+  <h2>A Client Messaging App</h2>
 </div>
+
+<div class="action-boxes">
+
+  <div class="card login">
+      <a href="/combinedlogin"> Login or Register Yourself</a>
+  </div>
+
+  
+</div>
+
+
+

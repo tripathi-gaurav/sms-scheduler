@@ -18,6 +18,7 @@ defmodule SmsSchedulerWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/combinedlogin", PageController, :new
     get "/users/new", UserController, :new
     get "/users/:id", UserController, :show
     post "/users", UserController, :create
