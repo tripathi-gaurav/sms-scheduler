@@ -3,7 +3,12 @@
 <br />
 <h4>Name: <%= @user.name %> </h4> <br />
 <h4>Email: <%= @user.email %> </h4> <br />
+
+<%= if @user.phone do %>
 <h4>Phone: <%= @user.phone %> </h4> <br />
+<%= else %>
+<%= link "Register You Phone Number", to: Routes.user_path(@conn, :edit, @user)  %> <br />
+<%= end %>
 
 <h2><%= @user.name %>'s Message History</h2>
 

@@ -1,0 +1,3 @@
+Hi <%= @user.name %>
+
+<%= render "phone.html", Map.put(assigns, :action, Routes.user_path(@conn, :update, @user)) %>

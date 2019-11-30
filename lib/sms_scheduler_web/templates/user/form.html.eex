@@ -24,12 +24,6 @@
      <%= error_tag f, :password_confirmation %>
    </label>
    <br />
-   <label>
-     Phone:<br />
-     <%= text_input f, :phone %>
-     <%= error_tag f, :phone %>
-   </label>
-   <br />
    <%= submit "Sign Up" %>
   <% end %>
 </div>

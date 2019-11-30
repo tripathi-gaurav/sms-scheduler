@@ -22,6 +22,8 @@ defmodule SmsSchedulerWeb.Router do
     get "/users/:id", UserController, :show
     post "/users", UserController, :create
     get "/users", UserController, :index
+    get "/users/:id/edit", UserController, :edit
+    put "/users/:id", UserController, :update
 
     get "/messages/new", MessageController, :new
     get "/messages/:id", MessageController, :show
