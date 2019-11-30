@@ -46,6 +46,7 @@ defmodule SmsScheduler.MixProject do
       {:comeonin, "~> 4.0.3"},
       {:bcrypt_elixir, "~> 1.0.4"},
       {:oauth2, "~> 2.0", git: "https://github.com/NatTuck/oauth2.git"},
+      {:ex_twilio, "~> 0.7.0"},
     ]
   end
 
@@ -62,4 +63,6 @@ defmodule SmsScheduler.MixProject do
       test: ["ecto.create --quiet", "ecto.migrate", "test"]
     ]
   end
+
+  
 end

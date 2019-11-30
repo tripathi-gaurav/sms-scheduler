@@ -22,8 +22,23 @@ defmodule SmsScheduler.Messages do
     end
 
     def create_message(attrs \\ %{}) do
-        %Message{}
+        #TODO: from_number should be available here without db query
+
+        message = %Message{}
         |> Message.changeset(attrs)
+
+
+        IO.inspect message.changes
+        m = message.changes
+
+        IO.puts ExTwilio.Config.account_sid()
+        IO.puts ExTwilio.Config.api_domain()
+        IO.puts ExTwilio.Config.api_version()
+        IO.puts ExTwilio.Config.auth_token()
+        t = ExTwilio.Message.create(to: m.to, from: "+18573204133", body: m.body)
+        IO.inspect t
+
+        message
         |> Repo.insert()
     end
 

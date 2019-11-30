@@ -16,6 +16,9 @@ config :sms_scheduler, SmsSchedulerWeb.Endpoint,
   secret_key_base: "2c/wWfc5zPY4S7dKt9hgjGYfaYrX36yJY53fFWaAiJqqtJASX0MLN/zLxHjO/z72",
   render_errors: [view: SmsSchedulerWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: SmsScheduler.PubSub, adapter: Phoenix.PubSub.PG2]
+  
+config :ex_twilio, account_sid: System.get_env("TWILIO_ACCOUNT_SID")
+config :ex_twilio, auth_token: System.get_env("TWILIO_AUTH_TOKEN")
 
 # Configures Elixir's Logger
 config :logger, :console,
