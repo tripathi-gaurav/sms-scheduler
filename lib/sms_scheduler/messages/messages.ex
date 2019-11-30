@@ -35,11 +35,14 @@ defmodule SmsScheduler.Messages do
         IO.puts ExTwilio.Config.api_domain()
         IO.puts ExTwilio.Config.api_version()
         IO.puts ExTwilio.Config.auth_token()
-        t = ExTwilio.Message.create(to: m.to, from: "+18573204133", body: m.body)
-        IO.inspect t
-
-        message
-        |> Repo.insert()
+        resp = ExTwilio.Message.create(to: m.to, from: "+18573204133", body: m.body)
+        IO.inspect resp
+        if {:ok, _resp} = resp do
+            message
+            |> Repo.insert()
+        else    
+            IO.puts "Error sending SMS"
+        end
     end
 
     def delete_message(%Message{} = message) do
