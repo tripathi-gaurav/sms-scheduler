@@ -14,6 +14,11 @@ defmodule SmsSchedulerWeb.SessionController do
       end
     
       def create(conn, %{"email" => email, "password" => password}) do
+        if(email == "" && password == "") do
+          conn
+          |> put_flash(:error, "Invalid username/password!")
+          |> render("new.html")
+        end
         with user <- Users.get_user_by_email(email),
              {:ok, login_user} <- login(user, password)
         do
