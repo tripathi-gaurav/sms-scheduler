@@ -1,4 +1,9 @@
-<div>
+<div class="tagline">
+  <h1>Welcome to SMS Scheduler</h1>
+  <h2>A Client Messaging App</h2>
+</div>
+
+<div class="action-boxes">
   <%= form_tag Routes.session_path(@conn, :create) do %>
     <label>
       Email:<br />

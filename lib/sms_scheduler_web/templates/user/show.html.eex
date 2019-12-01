@@ -18,12 +18,20 @@
                 <div class="tab-pane active" id="messages">
                    <h4><%= @user.name %>'s Message History</h4>
                    <%= if @user.phone do %>
-                                <%= for message <- @user.messages do %>
-                                  <div class="row">
-                                  <p>To: <%= message.to %></p><br />
-                                  <p>Message: <%= message.body %></p><br />
-                                </div>
-                                <% end %>
+                      <table class="table table-hover table-striped">
+                        <tr>
+                           <th>To</th>
+                           <th>Message</th>
+                        </tr>
+                        <tbody>
+                        <%= for message <- @user.messages do %>
+                                  <tr>
+                                    <td><%= message.to %></td>
+                                    <td><%= message.body %></td>
+                                  </tr>
+                        <% end %>                                    
+                        </tbody>
+                      </table>
                     <%= else %>
                                 <%= link "Register You Phone Number", to: Routes.user_path(@conn, :edit, @user)  %>
                     <%= end %>
@@ -37,4 +45,3 @@
         </div>
     </div>
 </div>
-

@@ -3,13 +3,20 @@
   <h2>A Client Messaging App</h2>
 </div>
 
-<div class="action-boxes">
+<br />
+<br />
 
-  <div class="card login">
-      <a href="/combinedlogin"> Login or Register Yourself</a>
+<div class="align-middle">
+<%= if @current_user == nil do %>
+
+  <div class="card login">    
+      <a href="/combinedlogin">Login or Register Yourself</a>
   </div>
-
-  
+<%= else %>
+   <div class="card login">
+      <a href=<%= Routes.user_path(@conn, :index) %>>Go To Dashboard</a>
+    </div>
+<%= end %>  
 </div>
 
 
