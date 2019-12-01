@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row my-2">
+        <div class="col-lg-8 order-lg-2">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a href="" data-target="#messages" data-toggle="tab" class="nav-link active">View Messages</a>
+                </li>
+            </ul>
+            <div class="tab-content py-4">
+                <div class="tab-pane active" id="messages">
+                   <h4><%= @user.name %>'s Message History for <%= @to %></h4>
+                      <table class="table table-hover table-striped">
+                        <tr>
+                                  <th>To</th>
+                                  <th>Messages</th>
+                        </tr>
+                        <%= for message <- @user.messages do %>
+                                <tbody>
+                                <%= if @to == message.to do %>  
+                                  <tr>
+                                    <td><%= message.to %></td>
+                                    <td><%= message.body %></td>
+                                  </tr>
+                                <%= end %>
+                                </tbody>
+                        <%= end %>                                    
+                      </table>
+                      <%= if length(@user.messages) == 0 do %>
+                            <h6>No Messages Sent Till Now</h6>
+                      <%= end %>
+                      <%= link "Back To Dashboard", to: Routes.user_path(@conn, :index)  %>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 order-lg-1 text-center">
+            <img src="/images/profile.jpg" height="500px" width="500px" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+        </div>
+    </div>
+</div>

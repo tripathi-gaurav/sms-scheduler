@@ -19,19 +19,24 @@
                    <h4><%= @user.name %>'s Message History</h4>
                    <%= if @user.phone do %>
                       <table class="table table-hover table-striped">
+                        <%= if length(@final_number_list) != 0 do %>
                         <tr>
-                           <th>To</th>
-                           <th>Message</th>
+                                    <th>To</th>
+                                    <th>See Messages</th>
                         </tr>
-                        <tbody>
-                        <%= for message <- @user.messages do %>
+                        <%= end %>
+                        <%= for to <- @final_number_list do %>
+                                  <tbody>
                                   <tr>
-                                    <td><%= message.to %></td>
-                                    <td><%= message.body %></td>
+                                    <td><%= to %></td>
+                                    <td> <a href=/numbers/<%= to %>>See messages </a></td>
                                   </tr>
+                                  </tbody>
                         <% end %>                                    
-                        </tbody>
                       </table>
+                      <%= if length(@final_number_list) == 0 do %>
+                            <h6>No Messages Sent Till Now</h6>
+                      <%= end %>
                     <%= else %>
                                 <%= link "Register You Phone Number", to: Routes.user_path(@conn, :edit, @user)  %>
                     <%= end %>

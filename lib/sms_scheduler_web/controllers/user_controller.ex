@@ -12,7 +12,7 @@ defmodule SmsSchedulerWeb.UserController do
         with {:ok, user} <- Users.create_user(user_params) do
             conn
             |> put_flash(:info, "User created!")
-            |> redirect(to: Routes.user_path(conn, :show, user))
+            |> redirect(to: Routes.session_path(conn, :new))
           else
             {:error, user} ->
               conn
@@ -28,8 +28,11 @@ defmodule SmsSchedulerWeb.UserController do
     end
 
     def show(conn, params) do
+        user = Users.get_user(params["id"])
+        number_list = Users.get_unique_number_list(user)
+        final_number_list = Enum.uniq(number_list)
         with user <- Users.get_user(params["id"]) do
-             render(conn, "show.html", user: user)
+             render(conn, "show.html", user: user, final_number_list: final_number_list)
         end
     end
 

@@ -44,4 +44,19 @@ defmodule SmsScheduler.Users do
       User.changeset(user, %{})
     end
 
+    def get_unique_number_list(user) do
+      number_list = []
+      messages = user.messages
+      final_list = create_number_list(messages, number_list)
+      final_list
+    end
+
+    def create_number_list(messages, number_list) when length(messages) != 0 do
+      number_list = [hd(messages).to] ++ number_list
+      create_number_list(tl(messages), number_list)
+    end
+
+    def create_number_list(messages, number_list) when length(messages) == 0 do
+      number_list
+    end
 end
