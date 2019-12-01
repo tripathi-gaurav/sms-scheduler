@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="col-lg-4 order-lg-1 text-center">
-            <img src="//placehold.it/500" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+            <img src="/images/profile.jpg" height="500px" width="500px" class="mx-auto img-fluid img-circle d-block" alt="avatar">
         </div>
     </div>
 </div>
