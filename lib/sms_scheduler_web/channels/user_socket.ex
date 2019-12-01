@@ -3,7 +3,7 @@ defmodule SmsSchedulerWeb.UserSocket do
 
   ## Channels
   # channel "room:*", SmsSchedulerWeb.RoomChannel
-
+  channel "messages:*", SmsSchedulerWeb.MessagesChannel
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
   # verification, you can put default assigns into
