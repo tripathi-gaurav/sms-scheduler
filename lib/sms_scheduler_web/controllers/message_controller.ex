@@ -11,8 +11,10 @@ defmodule SmsSchedulerWeb.MessageController do
     end
 
     def new(conn, _params) do
+        login_user = get_session(conn, :user)
+        user = Users.get_user(login_user.id)
         message = Messages.new_message()
-        render(conn, "new.html", message: message)
+        render(conn, "new.html", message: message, user: user)
     end
 
     def create(conn, %{"message" => message_params}) do
