@@ -47,6 +47,9 @@ defmodule SmsScheduler.MixProject do
       {:bcrypt_elixir, "~> 1.0.4"},
       {:oauth2, "~> 2.0", git: "https://github.com/NatTuck/oauth2.git"},
       {:ex_twilio, "~> 0.7.0"},
+      {:timex, "~> 3.5"},
+      {:sched_ex, "~> 1.0"},
+      {:calendar, "~> 1.0.0"},
     ]
   end
 

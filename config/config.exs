@@ -20,10 +20,13 @@ config :sms_scheduler, SmsSchedulerWeb.Endpoint,
 config :ex_twilio, account_sid: System.get_env("TWILIO_ACCOUNT_SID")
 config :ex_twilio, auth_token: System.get_env("TWILIO_AUTH_TOKEN")
 
+config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
-  metadata: [:request_id]
+  metadata: [:request_id],
+  level: :debug
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason

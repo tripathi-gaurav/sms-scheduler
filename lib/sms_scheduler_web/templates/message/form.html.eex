@@ -2,16 +2,50 @@
   <%= form_for @message, Routes.message_path(@conn, :create), fn f -> %>
    <label>
      To:<br />
-     <%= text_input f, :to %>
+     <%= text_input f, :to, class: "form-control" %>
      <%= error_tag f, :to %>
    </label>
    <br />
    <label>
      Message:<br />
-     <%= text_input f, :body %>
+     <%= text_input f, :body, class: "form-control" %>
      <%= error_tag f, :body %>
    </label>
    <br />
-   <%= submit "Send Message" %>
+   <label class="control-label">
+     Send time: 
+     
+     <div class="form-check">
+     <%# <input type="checkbox" id="check_now" onclick="myFunction(this)" class="form-check-input" > %>
+     <%= checkbox f, :send_now, class: "form-check-input", id: "check_now", onclick: "myFunction()" %>
+     <label class="form-check-label" for="check_now">Send Now</label>
+     </div>
+     
+     <%= datetime_select f, :send_time, id: "send_time", class: "form-control", builder: fn b -> %>
+       Date: <%= b.(:day, []) %> / <%= b.(:month, []) %> / <%= b.(:year, [options: 2019..2020]) %>
+       Time: <%= b.(:hour, []) %> : <%= b.(:minute, []) %>
+     <% end %>
+     <%= error_tag f, :send_time %>
+   </label>
+   <br />
+   
+   <%= submit "Send Message", class: "btn btn-primary" %>
   <% end %>
 </div>
+
+<script>
+function myFunction(e) {
+  
+    send_time_day = document.getElementById( 'send_time_day' );
+    send_time_month = document.getElementById( 'send_time_month' );
+    send_time_year = document.getElementById('send_time_year' );
+    send_time_hour = document.getElementById( 'send_time_hour' );
+    send_time_minute = document.getElementById( 'send_time_minute' );
+    send_time_day.disabled = !send_time_day.disabled;
+    send_time_month.disabled = !send_time_month.disabled;
+    send_time_year.disabled = !send_time_year.disabled;
+    send_time_hour.disabled = !send_time_hour.disabled;
+    send_time_minute.disabled = !send_time_minute.disabled;
+  
+}
+</script>

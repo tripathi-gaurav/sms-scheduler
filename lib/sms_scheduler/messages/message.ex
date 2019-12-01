@@ -7,7 +7,8 @@ defmodule SmsScheduler.Messages.Message do
     schema "messages" do
         field :to, :string, size: 10
         field :body, :string
-     
+        field :send_time, :naive_datetime
+        field :send_now, :boolean
         belongs_to :user, User
      
         timestamps()
@@ -15,7 +16,7 @@ defmodule SmsScheduler.Messages.Message do
      
     def changeset(%Message{}=message, attrs) do
         message
-        |> cast(attrs, [:to, :body, :user_id])
+        |> cast(attrs, [:to, :body, :user_id, :send_now, :send_time])
         |> validate_required([:to, :body, :user_id])
     end
 end
