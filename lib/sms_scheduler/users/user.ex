@@ -10,7 +10,7 @@ defmodule SmsScheduler.Users.User do
         field :phone, :string, size: 10
         field :password_hash, :string
         field :token, :string
-        field :avatar_url, :string
+        field :avatar_url, :string, default: "/images/profile.jpg"
         field :password, :string, virtual: true
         field :password_confirmation, :string, virtual: true
 
