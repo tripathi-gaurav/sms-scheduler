@@ -39,12 +39,25 @@ defmodule SmsSchedulerWeb.AuthController do
     user = user
     |> Map.put("token", token.access_token)
     |> Map.put("email", user_email)
+    #|> Map.put("avatar_url", user.avatar_url)
 
     IO.inspect(user)
     insert_user = SmsScheduler.Users.create_user(user)
 
     IO.inspect( insert_user )
     
+    a = ExTwilio.Token
+    available_phone_numbers = ExTwilio.AvailablePhoneNumber.stream(
+    iso_country_code: "US",
+    type: "Local")
+    IO.inspect available_phone_numbers
+    IO.inspect available_phone_numbers |> Enum.take(1) |> List.first
+    number = available_phone_numbers |> Enum.take(1) |> List.first
+    IO.puts number.phone_number
+    phone_number = number.phone_number
+    user = Map.put(user, "phone", phone_number )
+    IO.inspect user
+
     login_user = Users.get_user_by_email(user_email)
     conn
     |> put_flash(:info, "Logged in successfully!")

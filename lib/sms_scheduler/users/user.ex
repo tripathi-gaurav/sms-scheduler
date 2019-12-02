@@ -10,7 +10,7 @@ defmodule SmsScheduler.Users.User do
         field :phone, :string, size: 10
         field :password_hash, :string
         field :token, :string
-
+        field :avatar_url, :string
         field :password, :string, virtual: true
         field :password_confirmation, :string, virtual: true
 
@@ -21,7 +21,7 @@ defmodule SmsScheduler.Users.User do
 
     def changeset(%User{}=user, attrs) do
         user
-        |> cast(attrs, [:name, :email, :phone, :password, :password_confirmation, :token])
+        |> cast(attrs, [:name, :email, :phone, :password, :password_confirmation, :token, :avatar_url])
         |> validate_format(:email, ~r/.+@.+\..+/, [message: "Please input a valid email"])
         |> unique_constraint(:email)
         |> validate_confirmation(:password, message: "does not match password!")

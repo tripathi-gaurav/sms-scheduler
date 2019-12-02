@@ -56,21 +56,15 @@ defmodule SmsScheduler.Messages do
                 fun = &ExTwilio.Message.create/3
                 IO.inspect fun
                 
-                #p = SchedEx.run_in(SmsScheduler.Scheduler.Schedule, :send_message, [to: m.to, from: "+18573204133", body: m.body], 1000)
-                #p = SchedEx.run_in(IO, :puts, ["hello"], 1000);
-                #fun  = %{id: "scheduled-task-twilio", start: {SchedEx, :run_in, [IO, :puts, ["hello"], 1000]} }
+                
                 fun  = %{id: "scheduled-task-twilio", start: {SchedEx, :run_at, 
                 [SmsScheduler.Scheduler.Schedule, :send_message, [m.to, "+18573204133", m.body], sched_time]},
                 restart: :temporary }
                 opts = [strategy: :one_for_one]
-                #IO.inspect Supervisor.start_link([fun], opts)
+                
                 sup = SmsScheduler.Supervisor
                 p = Supervisor.start_child(sup, fun)
-                IO.inspect p
-                # sup = Supervisor.supervisor()
-                # DynamicSupervisor.start_child(sup, &1)
-
-                #IO.inspect p
+                
             end
         end
         IO.inspect resp
