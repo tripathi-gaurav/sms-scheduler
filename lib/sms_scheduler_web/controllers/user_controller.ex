@@ -9,6 +9,16 @@ defmodule SmsSchedulerWeb.UserController do
     end
 
     def create(conn, %{"user" => user_params}) do
+       available_phone_numbers = ExTwilio.AvailablePhoneNumber.stream(
+       iso_country_code: "US",
+       type: "Local")
+       IO.inspect available_phone_numbers
+       IO.inspect available_phone_numbers |> Enum.take(1) |> List.first
+       number = available_phone_numbers |> Enum.take(1) |> List.first
+       IO.puts number.phone_number
+       phone_number = number.phone_number
+       IO.inspect user_params
+       user_params = Map.put(user_params, "phone", phone_number )
         with {:ok, user} <- Users.create_user(user_params) do
             conn
             |> put_flash(:info, "User created!")
