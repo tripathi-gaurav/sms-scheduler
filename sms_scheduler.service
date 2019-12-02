@@ -1,0 +1,16 @@
+[Unit]
+Description=SMS Scheduling APP
+
+[Service]
+Type=simple
+User=sms
+Group=sms
+Restart=on-failure
+Environment=MIX_ENV=prod "PORT=4797"
+Environment=LANG=en_US.UTF-8
+
+WorkingDirectory=/home/sms/sms-scheduler/
+ExecStart=/home/sms/sms-scheduler/start.sh
+
+[Install]
+WantedBy=multi-user.target

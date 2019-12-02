@@ -20,7 +20,7 @@ defmodule SmsSchedulerWeb.UserController do
        IO.inspect user_params
        app_sid = ExTwilio.Config.account_sid()
         settings = [
-          {:friendly_name, user_email},
+          {:friendly_name, user_params["email"]},
           {:phone_number, phone_number}
         ]
         number_resp = ExTwilio.IncomingPhoneNumber.create(settings)

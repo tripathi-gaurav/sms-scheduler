@@ -1,0 +1,21 @@
+upstream sms_scheduler_app {
+    server localhost:4797;
+}
+
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name sms.saurabhbothra.xyz;
+
+    location / {
+        proxy_pass http://sms_scheduler_app;
+    }
+
+    location /socket {
+        proxy_pass http://sms_scheduler_app;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+}

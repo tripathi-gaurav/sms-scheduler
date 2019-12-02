@@ -27,6 +27,8 @@ config :sms_scheduler, SmsSchedulerWeb.Endpoint,
   http: [:inet6, port: String.to_integer(System.get_env("PORT") || "4000")],
   secret_key_base: secret_key_base
 
+config :sms_scheduler, SmsSchedulerWeb.Endpoint, server: true
+
 # ## Using releases (Elixir v1.9+)
 #
 # If you are doing OTP releases, you need to instruct Phoenix
