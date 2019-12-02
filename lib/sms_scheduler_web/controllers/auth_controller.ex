@@ -2,6 +2,7 @@ defmodule SmsSchedulerWeb.AuthController do
   use SmsSchedulerWeb, :controller
   alias SmsScheduler.Users
   alias SmsScheduler.Auth
+  alias SmsScheduler.BackupAgent
 
   def authenticate(conn, _params) do
     redirect conn, external: Auth.authorize_url!(scope: "user:email, repo")
@@ -50,16 +51,22 @@ defmodule SmsSchedulerWeb.AuthController do
     IO.puts number.phone_number
     phone_number = number.phone_number
     user = Map.put(user, "phone", phone_number )
+    app_sid = ExTwilio.Config.account_sid()
+    settings = [
+      {:friendly_name, user_email},
+      {:phone_number, phone_number}
+    ]
+    number_resp = ExTwilio.IncomingPhoneNumber.create(settings)
+    IO.inspect number_resp
     IO.inspect user
     
-    IO.inspect(user)
     insert_user = SmsScheduler.Users.create_user(user)
 
     IO.inspect( insert_user )
     
     a = ExTwilio.Token
     
-
+    BackupAgent.put(user_email, conn)
     login_user = Users.get_user_by_email(user_email)
     conn
     |> put_flash(:info, "Logged in successfully!")

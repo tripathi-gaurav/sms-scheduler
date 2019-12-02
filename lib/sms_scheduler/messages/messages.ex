@@ -2,6 +2,7 @@ defmodule SmsScheduler.Messages do
     import Ecto.Query, warn: false
     alias SmsScheduler.Repo
     alias SmsScheduler.Users.User
+    alias SmsScheduler.Users
     alias SmsScheduler.Messages.Message
     use DynamicSupervisor
 
@@ -31,6 +32,10 @@ defmodule SmsScheduler.Messages do
 
         IO.inspect message
         m = message.changes
+        IO.inspect m
+        user_id = m.user_id
+        user = Users.get_user(user_id)
+        IO.inspect user.phone
 
         # IO.puts ExTwilio.Config.account_sid()
         # IO.puts ExTwilio.Config.api_domain()
@@ -39,7 +44,7 @@ defmodule SmsScheduler.Messages do
         resp =  
         if m.send_now do
             #m.send_time = Timex.now("America/New_York")
-            ExTwilio.Message.create(to: m.to, from: "+18573204133", body: m.body)
+            ExTwilio.Message.create(to: m.to, from: user.phone, body: m.body)
         else
             IO.inspect m.send_time
             {:ok, sched_time} = DateTime.from_naive(m.send_time, "America/New_York")

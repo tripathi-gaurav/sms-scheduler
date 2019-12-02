@@ -11,9 +11,10 @@ defmodule SmsScheduler.Application do
       # Start the Ecto repository
       SmsScheduler.Repo,
       # Start the endpoint when the application starts
-      SmsSchedulerWeb.Endpoint
+      SmsSchedulerWeb.Endpoint,
       # Starts a worker by calling: SmsScheduler.Worker.start_link(arg)
       # {SmsScheduler.Worker, arg},
+      SmsScheduler.BackupAgent
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

@@ -18,6 +18,13 @@ defmodule SmsSchedulerWeb.UserController do
        IO.puts number.phone_number
        phone_number = number.phone_number
        IO.inspect user_params
+       app_sid = ExTwilio.Config.account_sid()
+        settings = [
+          {:friendly_name, user_email},
+          {:phone_number, phone_number}
+        ]
+        number_resp = ExTwilio.IncomingPhoneNumber.create(settings)
+        IO.inspect number_resp
        user_params = Map.put(user_params, "phone", phone_number )
         with {:ok, user} <- Users.create_user(user_params) do
             conn
