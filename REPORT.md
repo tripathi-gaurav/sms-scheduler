@@ -7,8 +7,8 @@
 
 **URL OF DEPLOYED APP**
 
-- saurabhbothra.xyz
-- webassembly.site
+- sms.saurabhbothra.xyz
+- sms.webassembly.site
 
 **GITHUB URL**
 
