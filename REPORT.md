@@ -12,8 +12,7 @@
 
 **GITHUB URL**
 
--
-[https://github.com/tripathi-gaurav/sms-scheduler.git](https://github.
+- [https://github.com/tripathi-gaurav/sms-scheduler.git](https://github.
 com/tripathi-gaurav/sms-scheduler.git)
 
 **APP DEPLOYED AND WORKING?**
